@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="fa-IR">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="نمایش لحظه‌ای قیمت ارزها" />
+        <meta name="author" content="Erfan" />
+        <title>پروژه - قیمت ارزها</title>
+        <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+        <link href="{{ url_for('static', filename='favicon.ico') }}" rel="Icon">
+		<link href="{{ url_for('static', filename='/flags/flag-icons.min.css') }}" rel="stylesheet">
+        <link href="{{ url_for('static', filename='styles.css') }}" rel="stylesheet" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+
+    </head>
+    <body id="page-top">
+        <!-- loading animation -->
+        <div id="page-loader" class="position-fixed top-0 start-0 w-100 h-100 bg-dark d-flex flex-column justify-content-center align-items-center" style="z-index: 9999;">
+            <div class="spinner-border text-light mb-3" role="status"></div>
+            <div class="text-light fs-5">در حال بارگذاری...</div>
+        </div>
+        <!-- Navigation-->
+         <nav class="navbar navbar-expand-lg bg-secondary text-uppercase fixed-top animate__animated animate__fadeIn" id="mainNav">
+            <div class="container">
+                <a class="navbar-brand animate__animated animate__zoomIn" href="/">وبسایت تمرینی</a>
+                <button class="navbar-toggler text-uppercase font-weight-bold bg-primary text-white rounded animate__animated animate__pulse" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                    منو
+                </button>
+              <div class="navbar-collapse collapse" id="navbarResponsive">
+                    <ul class="navbar-nav ms-auto  animate__animated animate__pulse">
+                        <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="#start">شرو ع</a></li>
+                        <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="#prices">لیست قیمت‌ها</a></li>
+                        <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="#aboutUs">درباره ما</a></li>
+                    </ul>
+                </div>
+                </div>
+            </div>
+        </nav> 
+        <!-- Start -->
+        <header class="bg-image masthead bg-primary text-white text-center rounded animate__animated animate__fadeIn" id="start">
+            <div class="container d-flex align-items-center flex-column">
+                <h1 class="display-2 text-uppercase mb-0 animate__animated animate__zoomIn">جدول نرخ ارزهای رایج</h1>
+                <!-- Icon Divider-->
+                <div class="divider-custom divider-light">
+                    <div class="divider-custom-line"></div>
+                    <div class="divider-custom-icon">&nbsp;&nbsp;</i></div>
+                    <div class="divider-custom-line"></div>
+                </div>
+                <!-- Start Subheading-->
+                <p class="masthead-subheading font-weight-light mb-0 animate__animated animate__pulse">قدرت گرفته از پایتون و وبسایت <a href="https://www.tgju.org/" class="link-light" target="_blank">tgju</a></p>
+            </div>
+        </header>
+        <!-- Table Section-->
+        <section class="page-section animate__animated animate__fadeIn">
+            <div class="container-fluid" id="prices">
+                <!-- Table Section Heading-->
+                <h2 class="display-2 page-section-heading text-center text-uppercase text-secondary mb-0 animate__animated animate__zoomIn">جدول ارزها</h2>
+                <!-- Icon Divider-->
+                <div class="divider-custom">
+                    <div class="divider-custom-line"></div>
+                    <div class="divider-custom-icon">&nbsp;&nbsp;</i></div>
+                    <div class="divider-custom-line"></div>
+                </div>
+                <!-- Table Section Price-->
+                <div class="row justify-content-center">
+                    <div class="col-sm-11 col-xl-10 p-0">
+                        <div class="table-responsive rounded-3 animate__animated animate__bounceIn" id="theTable">
+                            <table class="table table-bordered table-striped table-hover table-dark">
+                                <caption>قیمت‌ها ممکن است دقیق نباشند. برای آپدیت صفحه را <a href="/">رفرش</a> کنید</caption>
+                                <thead class="position-sticky top-0 z-2">
+                                    <tr>
+                                        <th scope="col">#</th>
+                                        <th scope="col">ارز</th>
+                                        <th scope="col">قیمت</th>
+                                    </tr>
+                                </thead>
+                            <tbody id="currency-body">
+                                <tr>
+                                    <td colspan="3" class="text-center text-warning">در حال بارگذاری اطلاعات...</td>
+                                </tr>
+                            </tbody>
+                            <tfoot class="position-sticky top-0 z-2">
+                                <tr class="text-center">
+                                    <td colspan="3" id="update-time">آخرین بروزرسانی: --:--:--</td>
+                                </tr>
+                            </tfoot>
+                        </table>
+   <div id="js-error" class="alert alert-danger text-center d-none mt-3" role="alert">
+        دریافت اطلاعات با خطا مواجه شد. لطفاً اتصال اینترنت را بررسی کنید یا صفحه را رفرش کنید.
+    </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Footer-->
+        <footer class="footer text-center animate__animated animate__fadeIn" id="aboutUs">
+            <div class="container">
+                <div class="row animate__animated animate__pulse">
+                    <!-- Footer About-->
+                    <div class="col-lg-4 mb-5 mb-lg-0">
+                        <h4 class=" text-uppercase mb-4" id="text1">ارتباط با ما</h4>
+                        <p class="lead mb-0" id="contact">
+
+                            <a class="f-a btn" href="tel:+989368647517">09368647517</a>
+                            <br><br>
+                            <a class="f-a btn" href="mailto:erfanorom1386@gmail.com">erfanorom1386@gmail.com</a>
+                        </p>
+                    </div>
+                    <!-- Footer Social Icons-->
+                    <div class="col-lg-4 mb-5 mb-lg-0">
+                        <div class="container g-sm-5 g-lg-0">
+                            <div class="row">
+                        <h4 class=" text-uppercase mb-4" id="text2">لینک‌های مفید</h4>
+                        </div>
+                        <br>
+                         <div class="row" id="icons">
+                         <div class="col-sm-6 col-lg-3"><a class="btn btn-outline-light btn-social mx-0" href="https://github.com/erfanorom" target="_blank"><i class="fab fa-fw fa-github"></i></a></div>
+                         <div class="col-sm-6 col-lg-3"><a class="btn btn-outline-light btn-social mx-0" href="https://discord.gg/tkeVZd2dzg" target="_blank"><i class="fab fa-fw fa-discord" data-fa-transform="shrink-6" data-fa-mask="fa-solid fa-circle"></i></a></div>
+                         <div class="col-sm-6 col-lg-3"><a class="btn btn-outline-light btn-social mx-0" href="https://t.me/oh_Erfan" target="_blank"><i class="fab fa-fw fa-telegram"></i></a></div>
+                         <div class="col-sm-6 col-lg-3"><a class="btn btn-outline-light btn-social mx-0" href="https://open.spotify.com/user/31tfj4cyg6pogetfwo4kavhgtfa4" target="_blank"><i class="fab fa-fw fa-spotify"></i></a></div>
+                        </div>
+                        </div>
+                    </div>
+                    <!-- Footer Text-->
+                    <div class="col-lg-4">
+                        <div class="container row">
+                        <h4 class="text-uppercase mb-4" id="text3">ابزارهای استفاده شده</h4>
+                        <div class="row">
+                        <p class="lead mb-0" id="tools">
+                            ساخته شده به کمک HTML, CSS, JavaScript, Bootstrap, PostgreSQL, Python, Flask, Requests, BS4
+                        </p>
+                        </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+        <!-- Copyright Section-->
+        <div class="copyright py-4 text-center text-white animate__animated animate__fadeIn" id="CPS">
+            <div class="container" id="text"><small>.Made with !love by <b>Erfan</b>.</small></div>
+        </div>
+        
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js" integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q" crossorigin="anonymous"></script>
+    <script src="{{ url_for('static', filename='scripts.js') }}"></script>
+    </body>
+</html>
